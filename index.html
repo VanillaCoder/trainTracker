@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+    <!-- internal css link -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+    <title>Train Tracker</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <h1>Train Times</h1>
+                    <p>A detailed list of train times.</p>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+
+                        <!-- Table for displaying train scheduling -->
+                        <div class="card">
+                            <h5 class="card-header">Train Schedule</h5>
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Train Name</th>
+                                            <th scope="col">Destination</th>
+                                            <th scope="col">Frequency (min)</th>
+                                            <th scope="col">Next arrival</th>
+                                            <th scope="col">Minutes away</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="addEmployee">
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+
+                        <!-- Form for submitting train info -->
+                        <div class="card">
+                            <h5 class="card-header">Add a Train To Be Tracked</h5>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label>Train name:</label>
+                                        <input class="form-control" id="train-name" placeholder="">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Destination:</label>
+                                        <input class="form-control" id="train-destination" placeholder="">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>First train time:</label>
+                                        <input class="form-control" id="train-first" placeholder="">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Frequency:</label>
+                                        <input class="form-control" id="train-frequency" placeholder="">
+                                    </div>
+
+                                    <button type="submit" id="btn-submit" class="btn btn-primary">Submit</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>
