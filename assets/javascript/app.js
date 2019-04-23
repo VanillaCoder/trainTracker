@@ -10,20 +10,21 @@ var config = {
     storageBucket: "projectvanilla-155df.appspot.com",
     messagingSenderId: "44997861253"
 };
+
 firebase.initializeApp(config);
 
 var database = firebase.database()
-
+var testing = "19:40"
+console.log(moment(testing, "HH/mm").valueOf())
 
 
 $("#btn-submit").on("click", function () {
+
     event.preventDefault()
     var tName = $("#train-name").val().trim()
     var tDestination = $("#train-destination").val().trim()
     var tFirst = $("#train-first").val().trim()
     var tFrequency = $("#train-frequency").val().trim()
-
-
 
     database.ref().push({
         Name: tName,
