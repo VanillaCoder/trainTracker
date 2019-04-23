@@ -1,6 +1,3 @@
-//TODO: Convert first train time to unix
-//TODO: Package and send the data to database
-//TODO: Take data from database and display it in table
 //TODO: calculate the time unil the next train and send it to the table
 //TODO: Be happy this shit is finally over, enjoy a beer.
 
@@ -15,19 +12,17 @@ var config = {
 };
 firebase.initializeApp(config);
 
-// Assign the reference to the database to a variable named 'database'
-// var database = ...
 var database = firebase.database()
 
 
 
-//TODO: Capture values from input form
 $("#btn-submit").on("click", function () {
     event.preventDefault()
     var tName = $("#train-name").val().trim()
     var tDestination = $("#train-destination").val().trim()
     var tFirst = $("#train-first").val().trim()
     var tFrequency = $("#train-frequency").val().trim()
+
 
 
     database.ref().push({
@@ -39,4 +34,27 @@ $("#btn-submit").on("click", function () {
 
     })
 
+})
+
+//TODO: Take data from database and display it in table
+database.ref().on("child_added", function (childSnapshot) {
+
+    var newTable = $("<tr>")
+
+    // grab train name from database and append to table
+    var tableName = $("<td>").text(childSnapshot.val().Name)
+    newTable.append(tableName)
+
+    // grab train destination from database and append to table
+    var tableDestination = $("<td>").text(childSnapshot.val().Destination)
+    newTable.append(tableDestination)
+
+    // grab train frequency from database and append to table
+    var tableFrequency = $("<td>").text(childSnapshot.val().Frequency)
+    newTable.append(tableFrequency)
+
+    //TODO: Convert first train time to unix using moment.js
+
+
+    $("#train-table").append(newTable)
 })
