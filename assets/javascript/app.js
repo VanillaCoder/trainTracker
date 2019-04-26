@@ -2,6 +2,10 @@
 //TODO: Be happy this shit is finally over, enjoy a beer.
 
 
+//find the difference between first time a train leaves to current time
+//then use % to find the remaining time until next arrival
+//diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+
 var config = {
     apiKey: "AIzaSyDcQzq1LS42JUzxk0evD5z6N5nWk_E5cg0",
     authDomain: "projectvanilla-155df.firebaseapp.com",
@@ -10,6 +14,10 @@ var config = {
     storageBucket: "projectvanilla-155df.appspot.com",
     messagingSenderId: "44997861253"
 };
+
+
+console.log(moment().diff(moment(1555986600000), "minutes"))
+
 
 firebase.initializeApp(config);
 
@@ -25,7 +33,7 @@ $("#btn-submit").on("click", function () {
     var tDestination = $("#train-destination").val().trim()
     var tFirst = $("#train-first").val().trim()
     var tFrequency = $("#train-frequency").val().trim()
-
+    console.log(tFirst)
     database.ref().push({
         Name: tName,
         Destination: tDestination,
@@ -54,8 +62,25 @@ database.ref().on("child_added", function (childSnapshot) {
     var tableFrequency = $("<td>").text(childSnapshot.val().Frequency)
     newTable.append(tableFrequency)
 
-    //TODO: Convert first train time to unix using moment.js
+    //calculates the time until the next train arrives 
+    var startTime = childSnapshot.val().First
+    console.log(startTime)
+    var firstTimeConverted = moment(startTime, "HH:mm").subtract(1, "years");
+    console.log(moment(firstTimeConverted).format("minutes"))
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes")
+    diffTime = diffTime % (childSnapshot.val().Frequency)
+    diffTime = (childSnapshot.val().Frequency) - diffTime
+
+    //displays the time of the next train arrival
+    var timeEst = moment().add(diffTime, "minutes")
+    var tableNext = $("<td>").text(moment(timeEst).format("hh:mm"))
+    console.log(moment(timeEst).format("hh:mm"))
+    newTable.append(tableNext)
 
 
+    //minutes away
+    var tableAway = $("<td>").text(diffTime)
+    newTable.append(tableAway)
+    //appends new line of table
     $("#train-table").append(newTable)
 })
