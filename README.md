@@ -1,6 +1,6 @@
 # trainTracker
 
-An app that allows you to enter in a trains first arrival and frequency of arrivals and be shown the next time the train will be at the station.
+An app that allows you to enter in a trains first arrival and frequency of arrivals and be shown the next time the train will be at the station. All trains are permanently stored in a databse.
 
 # Technologies
 * HTML
